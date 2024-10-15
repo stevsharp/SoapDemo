@@ -10,4 +10,9 @@ public interface IMySoapService
 
     [OperationContract]
     int Add(int x, int y);
+
+    [OperationContract]
+    bool Authenticate(LoginDto login);
 }
+
+public record LoginDto(string userName, string password);

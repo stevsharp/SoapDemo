@@ -20,23 +20,25 @@ try
 
     var binding = new BasicHttpBinding();
 
-    // Set the endpoint address (ensure the URL is correct, matching your service)
+
     var endpoint = new EndpointAddress(new Uri("http://localhost:5015/MySoapService.svc"));
 
-    // Create the channel factory to connect to the service
     var channelFactory = new ChannelFactory<ServiceReference1.IMySoapService>(binding, endpoint);
 
-    // Create a proxy client
+
     var serviceClient = channelFactory.CreateChannel();
 
-    // Call the SOAP service method
-    string result = await serviceClient.SayHelloAsync("hey");
+    var result = await serviceClient.AuthenticateAsync(new ServiceReference1.LoginDto
+    {
+        UserName = "admin",
+        Password = "test"
+    });
 
     Console.WriteLine(result);
 
-    //var mySoapService = new MySoapServiceClient();
+    var mySoapService = new MySoapServiceClient();
 
-    //var ooo = await mySoapService.SayHelloAsync("Spyros");
+    var ooo = await mySoapService.SayHelloAsync("Spyros");
 
     Console.WriteLine(result.ToString());
 }

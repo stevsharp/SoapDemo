@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Runtime.Serialization;
+using System.ServiceModel;
 
 namespace SoapDemo;
 
@@ -10,8 +11,21 @@ public interface IMySoapService
 
     [OperationContract]
     int Add(int x, int y);
-}
 
+    [OperationContract]
+    bool Authenticate(LoginDto login);
+
+}
+[DataContract]
+public record LoginDto
+{
+    [DataMember]
+    public string UserName { get; init; }
+
+    [DataMember]
+    public string Password { get; init; }
+
+}
 
 public class MySoapService : IMySoapService
 {
@@ -23,5 +37,15 @@ public class MySoapService : IMySoapService
     public int Add(int x, int y)
     {
         return x + y;
+    }
+
+    public bool Authenticate(LoginDto login)
+    {
+        if (login == null)
+        {
+            return false;
+        }
+
+        return login.UserName == "admin" && login.Password == "test";
     }
 }

@@ -9,7 +9,45 @@
 
 namespace ServiceReference1
 {
+    using System.Runtime.Serialization;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginDto", Namespace="http://schemas.datacontract.org/2004/07/SoapDemo")]
+    public partial class LoginDto : object
+    {
+        
+        private string PasswordField;
+        
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password
+        {
+            get
+            {
+                return this.PasswordField;
+            }
+            set
+            {
+                this.PasswordField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName
+        {
+            get
+            {
+                return this.UserNameField;
+            }
+            set
+            {
+                this.UserNameField = value;
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IMySoapService")]
@@ -21,6 +59,9 @@ namespace ServiceReference1
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMySoapService/Add", ReplyAction="http://tempuri.org/IMySoapService/AddResponse")]
         System.Threading.Tasks.Task<int> AddAsync(int x, int y);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMySoapService/Authenticate", ReplyAction="http://tempuri.org/IMySoapService/AuthenticateResponse")]
+        System.Threading.Tasks.Task<bool> AuthenticateAsync(ServiceReference1.LoginDto login);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
@@ -83,6 +124,11 @@ namespace ServiceReference1
             return base.Channel.AddAsync(x, y);
         }
         
+        public System.Threading.Tasks.Task<bool> AuthenticateAsync(ServiceReference1.LoginDto login)
+        {
+            return base.Channel.AuthenticateAsync(login);
+        }
+        
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
@@ -97,7 +143,6 @@ namespace ServiceReference1
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
                 result.MaxReceivedMessageSize = int.MaxValue;
                 result.AllowCookies = true;
-                result.Security.Mode = System.ServiceModel.BasicHttpSecurityMode.Transport;
                 return result;
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
@@ -107,7 +152,7 @@ namespace ServiceReference1
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IMySoapService))
             {
-                return new System.ServiceModel.EndpointAddress("https://localhost:7289/MySoapService.svc");
+                return new System.ServiceModel.EndpointAddress("http://localhost:5015/MySoapService.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
