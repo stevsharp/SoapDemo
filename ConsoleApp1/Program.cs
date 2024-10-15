@@ -18,10 +18,11 @@ try
 
     //var result = serviceClient.SayHello("hey");
 
-    var binding = new BasicHttpBinding();
+    var binding = new BasicHttpBinding(BasicHttpSecurityMode.Transport);
+    binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
 
 
-    var endpoint = new EndpointAddress(new Uri("http://localhost:5015/MySoapService.svc"));
+    var endpoint = new EndpointAddress(new Uri("https://localhost:7289/MySoapService.svc"));
 
     var channelFactory = new ChannelFactory<ServiceReference1.IMySoapService>(binding, endpoint);
 
