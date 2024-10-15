@@ -1,0 +1,6 @@
+@SoapDemo_HostAddress = http://localhost:5015
+
+GET {{SoapDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
