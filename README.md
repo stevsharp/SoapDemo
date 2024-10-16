@@ -39,6 +39,10 @@ Make sure you have the following installed on your machine:
 - [.NET SDK 8.0 or later](https://dotnet.microsoft.com/download/dotnet/8.0)
 - A code editor such as [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/)
 
+### Connect with Me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue)](https://www.linkedin.com/in/spyros-ponaris-913a6937/)
+
 ### Clone the Repository
 
 Clone this repository to your local machine:
@@ -47,6 +51,4 @@ Clone this repository to your local machine:
 git clone https://github.com/stevsharp/SoapDemo.git
 cd SoapDemo
 
-### Connect with Me
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue)](https://www.linkedin.com/in/spyros-ponaris-913a6937/)
