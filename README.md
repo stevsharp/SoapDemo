@@ -46,3 +46,7 @@ Clone this repository to your local machine:
 ```bash
 git clone https://github.com/stevsharp/SoapDemo.git
 cd SoapDemo
+
+## Connect with Me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue)](https://www.linkedin.com/in/spyros-ponaris-913a6937/)
